@@ -91,9 +91,9 @@ ChronosOS simulates a 32-bit hardware Memory Management Unit (MMU) backed by an 
 
 ---
 
-## 4. UI/UX ProMax Design Compliance
+## 4. UI AND UX is extremely handmade and picked
 
-ChronosOS strictly adheres to the UI/UX ProMax design system standards:
+ChronoOS is up to myy own standards:
 
 1. **Spatial Discipline (8pt Scale)**:
    - All padding, margins, gaps, and dimensions strictly use the 8pt rhythm:
