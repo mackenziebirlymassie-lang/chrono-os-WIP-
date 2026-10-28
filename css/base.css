@@ -1,0 +1,128 @@
+/**
+ * ChronosOS - Base CSS & Reset
+ * Clean, hardware-accelerated canvas background, accessibility focus styles, and scrollbars
+ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html, body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: var(--color-neutral-000);
+  color: var(--color-neutral-900);
+  font-family: var(--font-family-ui);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+}
+
+/* Master Hardware Canvas Layer */
+#desktop-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  image-rendering: auto;
+}
+
+/* DOM UI Shell (Windows, Taskbar, Modals) */
+#desktop-shell {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  overflow: hidden;
+  pointer-events: auto;
+}
+
+/* Selection */
+::selection {
+  background-color: var(--color-primary-400);
+  color: #ffffff;
+}
+
+/* Custom Scrollbars adhering to 8pt rhythm */
+::-webkit-scrollbar {
+  width: var(--space-1);
+  height: var(--space-1);
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: var(--radius-sm);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-neutral-600);
+  border-radius: var(--radius-sm);
+  transition: background var(--transition-fast);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary-400);
+}
+
+/* Universal Focus Visible Compliance */
+:focus-visible {
+  outline: none;
+  box-shadow: var(--state-focus-ring);
+}
+
+/* Typography elements strictly conforming to 3-scale */
+h1, h2, h3 {
+  font-family: var(--font-family-ui);
+  color: var(--color-neutral-950);
+}
+
+.os-header-1 {
+  font-size: var(--font-size-header);
+  line-height: var(--line-height-header);
+  font-weight: var(--font-weight-header);
+  letter-spacing: -0.02em;
+}
+
+.os-subtitle {
+  font-size: var(--font-size-subtitle);
+  line-height: var(--line-height-subtitle);
+  font-weight: var(--font-weight-subtitle);
+  letter-spacing: -0.01em;
+}
+
+.os-body {
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  font-weight: var(--font-weight-body);
+}
+
+.os-mono {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-mono);
+  line-height: var(--line-height-mono);
+}
+
+/* Utility classes */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

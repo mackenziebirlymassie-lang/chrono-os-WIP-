@@ -1,0 +1,407 @@
+/**
+ * ChronosOS - Desktop, Taskbar, System Tray & Launcher
+ * Compliant with 8pt spatial rhythm and ProMax elevation hierarchy
+ */
+
+.desktop-workspace {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: var(--taskbar-height);
+  overflow: hidden;
+  padding: var(--space-2);
+}
+
+/* Desktop App Grid */
+.desktop-icons-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 80px);
+  grid-auto-rows: 96px;
+  grid-gap: var(--space-2);
+  align-content: start;
+  pointer-events: auto;
+}
+
+.desktop-icon-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 96px;
+  border-radius: var(--radius-md);
+  padding: var(--space-1);
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid transparent;
+  transition: background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+  color: var(--color-neutral-900);
+}
+
+.desktop-icon-item:hover {
+  background: var(--color-neutral-300);
+  border-color: var(--state-hover-border);
+  transform: translateY(-2px);
+}
+
+.desktop-icon-item:active {
+  background: var(--color-neutral-400);
+  transform: scale(0.96);
+}
+
+.desktop-icon-item:focus-visible {
+  box-shadow: var(--state-focus-ring);
+  outline: none;
+}
+
+.desktop-icon-graphic {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--space-1);
+  box-shadow: var(--elevation-2);
+  font-size: 20px;
+}
+
+.desktop-icon-label {
+  font-size: var(--font-size-body);
+  line-height: 18px;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+  color: var(--color-neutral-950);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+/* =========================================================================
+ * TASKBAR & DOCK (48px Height, 8pt Grid)
+ * ========================================================================= */
+.taskbar-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: var(--taskbar-height);
+  background: rgba(18, 26, 39, 0.82);
+  backdrop-filter: var(--backdrop-blur-md);
+  -webkit-backdrop-filter: var(--backdrop-blur-md);
+  border-top: 1px solid var(--state-default-border);
+  box-shadow: var(--elevation-3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-2);
+  z-index: 1000;
+  user-select: none;
+}
+
+.taskbar-left-cluster {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  height: 100%;
+}
+
+.taskbar-center-tasks {
+  display: flex;
+  align-items: center;
+  gap: var(--space-0_5);
+  flex: 1;
+  max-width: 60%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  height: 100%;
+  padding: 0 var(--space-2);
+}
+
+.taskbar-center-tasks::-webkit-scrollbar {
+  display: none;
+}
+
+.taskbar-right-tray {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  height: 100%;
+}
+
+/* Start Button */
+.taskbar-start-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  height: var(--control-height-md);
+  padding: 0 var(--space-2);
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.25), rgba(99, 102, 241, 0.25));
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  color: var(--color-neutral-950);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-body);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.taskbar-start-btn:hover {
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.45), rgba(99, 102, 241, 0.45));
+  border-color: var(--color-primary-300);
+  box-shadow: 0 0 12px rgba(14, 165, 233, 0.4);
+}
+
+.taskbar-start-btn:active {
+  transform: var(--state-active-transform);
+}
+
+.taskbar-start-btn.is-active {
+  background: var(--color-primary-500);
+  border-color: var(--color-primary-300);
+}
+
+/* Running App Pill in Taskbar */
+.taskbar-app-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  height: var(--control-height-md);
+  padding: 0 var(--space-1_5, 12px);
+  border-radius: var(--radius-sm);
+  background: rgba(27, 38, 55, 0.5);
+  border: 1px solid var(--state-default-border);
+  color: var(--color-neutral-800);
+  font-size: var(--font-size-body);
+  cursor: pointer;
+  max-width: 180px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: all var(--transition-fast);
+}
+
+.taskbar-app-item:hover {
+  background: var(--color-neutral-400);
+  color: var(--color-neutral-950);
+  border-color: var(--color-neutral-600);
+}
+
+.taskbar-app-item.is-focused {
+  background: var(--color-neutral-400);
+  border-color: var(--color-primary-400);
+  color: #ffffff;
+  box-shadow: inset 0 -2px 0 var(--color-primary-400);
+}
+
+.taskbar-app-item.is-minimized {
+  opacity: 0.6;
+}
+
+/* System Tray Mini-Gauges (Live Real-Time Telemetry) */
+.tray-telemetry-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  height: var(--control-height-md);
+  padding: 0 var(--space-1);
+  border-radius: var(--radius-sm);
+  background: var(--color-neutral-300);
+  border: 1px solid var(--state-default-border);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-mono);
+  color: var(--color-neutral-900);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.tray-telemetry-pill:hover {
+  background: var(--color-neutral-400);
+  border-color: var(--color-neutral-600);
+}
+
+.tray-telemetry-pill .metric-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.tray-telemetry-pill .metric-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-success-text);
+  box-shadow: 0 0 6px var(--color-success-text);
+}
+
+.tray-telemetry-pill .metric-dot.warn {
+  background: var(--color-warning-text);
+  box-shadow: 0 0 6px var(--color-warning-text);
+}
+
+.tray-telemetry-pill .metric-dot.danger {
+  background: var(--color-danger-text);
+  box-shadow: 0 0 6px var(--color-danger-text);
+}
+
+/* Clock and Date */
+.tray-clock {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0 var(--space-1);
+  height: var(--control-height-md);
+  cursor: pointer;
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-mono);
+  line-height: 14px;
+  color: var(--color-neutral-950);
+}
+
+/* =========================================================================
+ * START MENU / APPLICATION LAUNCHER
+ * ========================================================================= */
+.start-menu-flyout {
+  position: absolute;
+  bottom: calc(var(--taskbar-height) + var(--space-1));
+  left: var(--space-1);
+  width: 480px;
+  height: 520px;
+  background: rgba(18, 26, 39, 0.94);
+  backdrop-filter: var(--backdrop-blur-lg);
+  -webkit-backdrop-filter: var(--backdrop-blur-lg);
+  border: 1px solid var(--color-neutral-500);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--elevation-modal);
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(16px) scale(0.97);
+  transition: opacity var(--transition-normal), transform var(--transition-normal);
+}
+
+.start-menu-flyout.is-open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+.start-menu-search-bar {
+  padding: var(--space-2);
+  border-bottom: 1px solid var(--state-default-border);
+}
+
+.start-menu-search-input {
+  width: 100%;
+  height: var(--control-height-lg);
+  background: var(--color-neutral-400);
+  border: 1px solid var(--color-neutral-500);
+  border-radius: var(--radius-md);
+  padding: 0 var(--space-2);
+  font-size: var(--font-size-body);
+  color: var(--color-neutral-950);
+  transition: all var(--transition-fast);
+}
+
+.start-menu-search-input:focus {
+  border-color: var(--color-primary-400);
+  box-shadow: var(--state-focus-ring);
+  outline: none;
+}
+
+.start-menu-apps-grid {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-2);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: var(--space-1);
+  align-content: start;
+}
+
+.start-menu-app-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-md);
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  color: var(--color-neutral-900);
+}
+
+.start-menu-app-card:hover {
+  background: var(--color-neutral-300);
+  border-color: var(--state-hover-border);
+  transform: translateX(2px);
+}
+
+.start-menu-app-card:active {
+  background: var(--color-neutral-400);
+  transform: scale(0.98);
+}
+
+.start-menu-app-card .app-icon-badge {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  box-shadow: var(--elevation-1);
+}
+
+.start-menu-app-card .app-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.start-menu-app-card .app-title {
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-body);
+  color: var(--color-neutral-950);
+}
+
+.start-menu-app-card .app-description {
+  font-size: var(--font-size-mono);
+  color: var(--color-neutral-700);
+  line-height: 14px;
+}
+
+.start-menu-footer {
+  padding: var(--space-2);
+  background: rgba(11, 17, 26, 0.6);
+  border-top: 1px solid var(--state-default-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.user-profile-badge {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-neutral-950);
+}
+
+.user-avatar-circle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-primary-400), #8b5cf6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 12px;
+}

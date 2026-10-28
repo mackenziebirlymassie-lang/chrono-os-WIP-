@@ -1,0 +1,227 @@
+/**
+ * ChronosOS - Window Chrome & Frame Styles
+ * Full compliance with 6-State UI/UX ProMax specification and 8pt rhythm
+ */
+
+.os-window {
+  position: absolute;
+  border-radius: var(--radius-lg);
+  background: rgba(18, 26, 39, 0.88);
+  backdrop-filter: var(--backdrop-blur-md);
+  -webkit-backdrop-filter: var(--backdrop-blur-md);
+  border: 1px solid var(--state-default-border);
+  box-shadow: var(--elevation-2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  user-select: none;
+  touch-action: none;
+  min-width: 280px;
+  min-height: 180px;
+  opacity: 1;
+  transform-origin: center center;
+  transition: box-shadow var(--transition-fast), border-color var(--transition-fast), opacity var(--transition-fast);
+}
+
+/* Focused Window Elevation */
+.os-window.is-focused {
+  border-color: rgba(56, 189, 248, 0.4);
+  box-shadow: var(--elevation-4);
+  z-index: 100;
+}
+
+/* Minimized State */
+.os-window.is-minimized {
+  display: none !important;
+}
+
+/* Maximized State */
+.os-window.is-maximized {
+  border-radius: 0 !important;
+  border: none !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: calc(100vh - var(--taskbar-height)) !important;
+  box-shadow: none !important;
+}
+
+/* Window Titlebar */
+.window-titlebar {
+  height: var(--window-title-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-1);
+  background: rgba(27, 38, 55, 0.65);
+  border-bottom: 1px solid var(--state-default-border);
+  cursor: grab;
+  user-select: none;
+}
+
+.os-window.is-focused .window-titlebar {
+  background: rgba(37, 51, 72, 0.8);
+  border-bottom-color: rgba(56, 189, 248, 0.2);
+}
+
+.window-titlebar:active {
+  cursor: grabbing;
+}
+
+.window-titlebar-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+}
+
+.window-app-icon {
+  width: 16px;
+  height: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
+
+.window-title-text {
+  font-size: var(--font-size-mono);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-neutral-800);
+  letter-spacing: 0.02em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.os-window.is-focused .window-title-text {
+  color: var(--color-neutral-950);
+}
+
+/* Window Action Controls (6 Complete States) */
+.window-titlebar-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-0_5);
+}
+
+.win-btn {
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--color-neutral-700);
+  font-size: 12px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+/* State 1: Default */
+.win-btn {
+  opacity: 0.85;
+}
+
+/* State 2: Hover */
+.win-btn:hover {
+  background: var(--color-neutral-400);
+  border-color: var(--color-neutral-500);
+  color: var(--color-neutral-950);
+  opacity: 1;
+}
+
+/* State 3: Active / Pressed */
+.win-btn:active {
+  background: var(--color-neutral-500);
+  transform: var(--state-active-transform);
+}
+
+/* State 4: Focus-Visible */
+.win-btn:focus-visible {
+  box-shadow: var(--state-focus-ring);
+  outline: none;
+}
+
+/* State 5: Disabled */
+.win-btn:disabled,
+.win-btn[aria-disabled="true"] {
+  opacity: var(--state-disabled-opacity);
+  cursor: var(--state-disabled-cursor);
+  pointer-events: none;
+}
+
+/* Close button specific styling */
+.win-btn-close:hover {
+  background: var(--color-danger-border) !important;
+  border-color: var(--color-danger-text) !important;
+  color: #ffffff !important;
+}
+
+.win-btn-close:active {
+  background: #b91c1c !important;
+}
+
+/* Window Client Area */
+.window-client-area {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  background: var(--color-neutral-200);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Window Virtual Canvas Surface (Backed by Canvas 2D) */
+.window-surface-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* DOM Viewport inside Client Area */
+.window-content-view {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Window Resize Grips (8 Directions) */
+.resize-handle {
+  position: absolute;
+  z-index: 50;
+  touch-action: none;
+}
+
+.resize-n  { top: -4px; left: 8px; right: 8px; height: 8px; cursor: n-resize; }
+.resize-s  { bottom: -4px; left: 8px; right: 8px; height: 8px; cursor: s-resize; }
+.resize-e  { top: 8px; bottom: 8px; right: -4px; width: 8px; cursor: e-resize; }
+.resize-w  { top: 8px; bottom: 8px; left: -4px; width: 8px; cursor: w-resize; }
+.resize-ne { top: -4px; right: -4px; width: 12px; height: 12px; cursor: ne-resize; }
+.resize-nw { top: -4px; left: -4px; width: 12px; height: 12px; cursor: nw-resize; }
+.resize-se { bottom: -4px; right: -4px; width: 12px; height: 12px; cursor: se-resize; }
+.resize-sw { bottom: -4px; left: -4px; width: 12px; height: 12px; cursor: sw-resize; }
+
+/* Snapping Preview Zone */
+.window-snap-ghost {
+  position: absolute;
+  background: rgba(14, 165, 233, 0.15);
+  border: 2px dashed var(--color-primary-300);
+  border-radius: var(--radius-lg);
+  pointer-events: none;
+  z-index: 999;
+  transition: all var(--transition-fast);
+  backdrop-filter: var(--backdrop-blur-sm);
+  display: none;
+}

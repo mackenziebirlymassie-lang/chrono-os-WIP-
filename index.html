@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>ChronosOS - Microtask Kernel & Canvas Desktop Environment</title>
+
+  <!-- UI/UX ProMax Design Token Hierarchy -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/desktop.css">
+  <link rel="stylesheet" href="css/window.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/apps.css">
+</head>
+<body>
+
+  <!-- Master Hardware-Accelerated 2D Canvas Compositor Layer -->
+  <canvas id="desktop-canvas"></canvas>
+
+  <!-- Desktop Interactive Shell (Windows, Modals, System UI) -->
+  <main id="desktop-shell">
+    
+    <!-- Desktop Workspace & Grid Icons -->
+    <div class="desktop-workspace">
+      <div class="desktop-icons-container"></div>
+    </div>
+
+    <!-- Start Menu Flyout / Application Launcher -->
+    <div id="start-menu-root" class="start-menu-flyout">
+      <div class="start-menu-search-bar">
+        <input type="text" class="start-menu-search-input" placeholder="Search applications, files, commands..." spellcheck="false">
+      </div>
+      <div class="start-menu-apps-grid"></div>
+      <div class="start-menu-footer">
+        <div class="user-profile-badge">
+          <div class="user-avatar-circle">⚡</div>
+          <span>root@chronos-vm</span>
+        </div>
+        <button class="os-btn os-btn-sm" id="btn-lock-session" title="Lock Screen">🔒 Lock</button>
+      </div>
+    </div>
+
+    <!-- System Taskbar & Dock (48px Height, 8pt Grid Discipline) -->
+    <footer id="taskbar-root" class="taskbar-container">
+      <div class="taskbar-left-cluster">
+        <button class="taskbar-start-btn" id="start-btn" aria-label="Start Menu">
+          <span>❖</span>
+          <span>Chronos</span>
+        </button>
+      </div>
+
+      <div class="taskbar-center-tasks"></div>
+
+      <div class="taskbar-right-tray">
+        <div class="tray-telemetry-pill" id="tray-telemetry" title="Real-Time System Telemetry">
+          <div class="metric-badge">
+            <span class="metric-dot"></span>
+            <span>0% CPU</span>
+          </div>
+          <div style="width: 1px; height: 12px; background: var(--state-default-border);"></div>
+          <div class="metric-badge">
+            <span>60 FPS</span>
+          </div>
+        </div>
+
+        <div class="tray-clock" id="tray-clock" title="System Clock & Calendar">
+          <span>12:00</span>
+          <span style="font-size: 10px; color: var(--color-neutral-700);">Oct 28</span>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- OS ES6+ Modular Bootstrap -->
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

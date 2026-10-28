@@ -1,0 +1,457 @@
+/**
+ * ChronosOS - Applications Style Suite
+ * Dedicated styling for Terminal, Process Tree, Memory Inspector, Paint, Files, Editor, Settings
+ */
+
+/* =========================================================================
+ * 1. TERMINAL APP
+ * ========================================================================= */
+.terminal-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #05080e;
+  color: #38bdf8;
+  font-family: var(--font-family-mono);
+  font-size: 13px;
+  line-height: 20px;
+  padding: var(--space-1);
+  overflow: hidden;
+}
+
+.terminal-scrollback {
+  flex: 1;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
+  user-select: text;
+  -webkit-user-select: text;
+  padding-bottom: var(--space-1);
+}
+
+.terminal-line {
+  min-height: 20px;
+}
+
+.terminal-prompt-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.terminal-prompt-user {
+  color: #34d399;
+  font-weight: bold;
+}
+
+.terminal-prompt-path {
+  color: #818cf8;
+}
+
+.terminal-prompt-symbol {
+  color: #f8fafc;
+}
+
+.terminal-input-field {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #f8fafc;
+  font-family: var(--font-family-mono);
+  font-size: 13px;
+  padding: 0;
+  caret-color: #38bdf8;
+}
+
+/* =========================================================================
+ * 2. TASK MANAGER & PROCESS TREE APP
+ * ========================================================================= */
+.task-manager-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--color-neutral-200);
+}
+
+.task-manager-metrics-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-1);
+  padding: var(--space-1);
+  background: var(--color-neutral-300);
+  border-bottom: 1px solid var(--state-default-border);
+}
+
+.metric-card-mini {
+  background: var(--color-neutral-200);
+  border: 1px solid var(--state-default-border);
+  border-radius: var(--radius-sm);
+  padding: var(--space-1);
+  display: flex;
+  flex-direction: column;
+}
+
+.metric-card-title {
+  font-size: 11px;
+  color: var(--color-neutral-700);
+  text-transform: uppercase;
+  font-family: var(--font-family-mono);
+}
+
+.metric-card-value {
+  font-size: var(--font-size-subtitle);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-300);
+  font-family: var(--font-family-mono);
+}
+
+.metric-sparkline-canvas {
+  width: 100%;
+  height: 28px;
+  display: block;
+}
+
+/* =========================================================================
+ * 3. MEMORY INSPECTOR APP
+ * ========================================================================= */
+.memory-inspector-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--color-neutral-200);
+}
+
+.memory-stats-header {
+  padding: var(--space-1) var(--space-2);
+  background: var(--color-neutral-300);
+  border-bottom: 1px solid var(--state-default-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-mono);
+}
+
+.memory-page-grid-container {
+  flex: 1;
+  padding: var(--space-2);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.memory-page-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(18px, 1fr));
+  gap: 2px;
+  background: var(--color-neutral-100);
+  padding: var(--space-1);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--state-default-border);
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+.memory-frame-cell {
+  width: 100%;
+  aspect-ratio: 1;
+  background: var(--color-neutral-400);
+  border-radius: 1px;
+  cursor: pointer;
+  transition: transform var(--transition-fast);
+}
+
+.memory-frame-cell:hover {
+  transform: scale(1.4);
+  z-index: 10;
+  box-shadow: 0 0 6px rgba(56, 189, 248, 0.8);
+}
+
+.memory-frame-cell.is-free {
+  background: #1e293b;
+}
+
+.memory-frame-cell.is-kernel {
+  background: #818cf8;
+}
+
+.memory-frame-cell.is-process {
+  background: #38bdf8;
+}
+
+.memory-frame-cell.is-dirty {
+  background: #f59e0b;
+}
+
+.memory-frame-cell.is-slab {
+  background: #10b981;
+}
+
+/* Hex Dump Viewer */
+.memory-hex-viewer {
+  flex: 1;
+  background: #05080e;
+  border: 1px solid var(--state-default-border);
+  border-radius: var(--radius-sm);
+  padding: var(--space-1);
+  font-family: var(--font-family-mono);
+  font-size: 11px;
+  line-height: 16px;
+  color: #94a3b8;
+  overflow-y: auto;
+  white-space: pre;
+}
+
+/* =========================================================================
+ * 4. CANVAS PAINT APP
+ * ========================================================================= */
+.canvas-paint-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--color-neutral-100);
+}
+
+.paint-toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1);
+  background: var(--color-neutral-300);
+  border-bottom: 1px solid var(--state-default-border);
+}
+
+.paint-viewport-wrapper {
+  flex: 1;
+  overflow: auto;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: repeating-conic-gradient(#151d2a 0% 25%, #1b2637 0% 50%) 50% / 16px 16px;
+}
+
+.paint-drawing-canvas {
+  background: #ffffff;
+  box-shadow: var(--elevation-3);
+  cursor: crosshair;
+}
+
+/* =========================================================================
+ * 5. FILE EXPLORER APP
+ * ========================================================================= */
+.file-explorer-container {
+  display: flex;
+  height: 100%;
+  background: var(--color-neutral-200);
+}
+
+.file-tree-sidebar {
+  width: 200px;
+  background: var(--color-neutral-100);
+  border-right: 1px solid var(--state-default-border);
+  overflow-y: auto;
+  padding: var(--space-1);
+}
+
+.file-explorer-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.file-address-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1);
+  background: var(--color-neutral-300);
+  border-bottom: 1px solid var(--state-default-border);
+}
+
+.file-items-grid {
+  flex: 1;
+  padding: var(--space-2);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  gap: var(--space-2);
+  align-content: start;
+  overflow-y: auto;
+}
+
+.file-grid-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-1);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all var(--transition-fast);
+}
+
+.file-grid-item:hover {
+  background: var(--color-neutral-300);
+  border-color: var(--state-hover-border);
+}
+
+.file-grid-item.is-selected {
+  background: rgba(14, 165, 233, 0.2);
+  border-color: var(--color-primary-400);
+}
+
+.file-icon {
+  font-size: 28px;
+  margin-bottom: var(--space-0_5);
+}
+
+.file-name {
+  font-size: 12px;
+  text-align: center;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* =========================================================================
+ * 6. CODE EDITOR & SCRIPT RUNNER APP
+ * ========================================================================= */
+.code-editor-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #090d16;
+}
+
+.code-editor-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-1);
+  background: var(--color-neutral-300);
+  border-bottom: 1px solid var(--state-default-border);
+}
+
+.code-editor-main {
+  flex: 1;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+
+.code-line-numbers {
+  width: 44px;
+  background: #06090e;
+  border-right: 1px solid var(--state-default-border);
+  color: var(--color-neutral-600);
+  font-family: var(--font-family-mono);
+  font-size: 12px;
+  line-height: 20px;
+  text-align: right;
+  padding: var(--space-1) var(--space-1) 0 0;
+  user-select: none;
+  overflow: hidden;
+}
+
+.code-textarea {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #f8fafc;
+  font-family: var(--font-family-mono);
+  font-size: 13px;
+  line-height: 20px;
+  padding: var(--space-1);
+  resize: none;
+  white-space: pre;
+  tab-size: 2;
+}
+
+.code-output-console {
+  height: 120px;
+  background: #05080e;
+  border-top: 1px solid var(--state-default-border);
+  padding: var(--space-1);
+  font-family: var(--font-family-mono);
+  font-size: 11px;
+  line-height: 16px;
+  color: #38bdf8;
+  overflow-y: auto;
+  white-space: pre-wrap;
+}
+
+/* =========================================================================
+ * 7. SYSTEM SETTINGS APP
+ * ========================================================================= */
+.settings-container {
+  display: flex;
+  height: 100%;
+  background: var(--color-neutral-200);
+}
+
+.settings-sidebar {
+  width: 180px;
+  background: var(--color-neutral-100);
+  border-right: 1px solid var(--state-default-border);
+  padding: var(--space-1);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-0_5);
+}
+
+.settings-nav-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  border: none;
+  color: var(--color-neutral-700);
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-bold);
+  cursor: pointer;
+  text-align: left;
+  transition: all var(--transition-fast);
+}
+
+.settings-nav-btn:hover {
+  background: var(--color-neutral-300);
+  color: var(--color-neutral-950);
+}
+
+.settings-nav-btn.is-active {
+  background: var(--color-neutral-400);
+  color: var(--color-primary-300);
+}
+
+.settings-content-panel {
+  flex: 1;
+  padding: var(--space-3);
+  overflow-y: auto;
+}
+
+.settings-section-card {
+  background: var(--color-neutral-300);
+  border: 1px solid var(--state-default-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-2);
+  margin-bottom: var(--space-2);
+}
+
+.settings-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-1) 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.settings-row:last-child {
+  border-bottom: none;
+}
